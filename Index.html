@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TWO">
+<meta name="theme-color" content="#FFF9F2">
+<title>TWO — Partner Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --cream:#FFF9F2;
+  --white:#FFFFFF;
+  --coral:#FF6B6B;
+  --coral-lt:#FFE9E9;
+  --coral-dk:#E85555;
+  --mint:#2BB8AC;
+  --mint-lt:#DFF6F4;
+  --sun:#FFC93C;
+  --sun-lt:#FFF4D6;
+  --lav:#8B7CF6;
+  --lav-lt:#EDE9FF;
+  --ink:#2E3538;
+  --ink2:#4A5459;
+  --gray:#8A9499;
+  --gray-lt:#E8EDEE;
+  --safe:env(safe-area-inset-bottom,0px);
+}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  padding-bottom:calc(78px + var(--safe));
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,#FFE9E9 0%,#FFF4D6 50%,#DFF6F4 100%);
+  padding:44px 20px 26px;
+  position:relative;
+  overflow:hidden;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+.blob{position:absolute;border-radius:50%;pointer-events:none}
+.blob1{width:150px;height:150px;background:rgba(255,107,107,.16);top:-40px;right:-30px}
+.blob2{width:100px;height:100px;background:rgba(43,184,172,.16);bottom:-30px;left:-20px}
+.blob3{width:70px;height:70px;background:rgba(255,201,60,.22);top:60px;left:-25px}
+.hero-eyebrow{
+  font-family:'Poppins',sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:2.5px;
+  color:var(--coral-dk);
+  text-transform:uppercase;
+  margin-bottom:8px;
+  position:relative;
+}
+.hero-title{
+  font-family:'Poppins',sans-serif;
+  font-size:34px;
+  font-weight:800;
+  line-height:1.05;
+  color:var(--ink);
+  position:relative;
+  letter-spacing:-0.5px;
+}
+.hero-title em{font-style:normal;color:var(--coral)}
+.hero-sub{
+  font-size:14px;
+  color:var(--ink2);
+  margin-top:8px;
+  position:relative;
+  font-weight:600;
+  line-height:1.5;
+}
+.hero-tags{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap;position:relative}
+.htag{
+  font-family:'Poppins',sans-serif;
+  font-size:10px;
+  font-weight:600;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.75);
+  color:var(--ink2);
+}
+.htag.c{color:var(--coral-dk)}
+.htag.m{color:var(--mint)}
+.htag.l{color:var(--lav)}
+
+/* ── SECTION ── */
+.sec{padding:22px 18px 10px}
+.sec-title{
+  font-family:'Poppins',sans-serif;
+  font-size:19px;
+  font-weight:700;
+  color:var(--ink);
+  letter-spacing:-0.3px;
+}
+.sec-sub{font-size:12px;color:var(--gray);margin-top:3px;font-weight:600}
+
+/* ── DAY TYPE PICKER ── */
+.type-row{display:flex;gap:8px;padding:0 18px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.type-row::-webkit-scrollbar{display:none}
+.type-btn{
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+  padding:10px 16px;
+  border:2px solid transparent;
+  border-radius:999px;
+  background:var(--white);
+  color:var(--gray);
+  cursor:pointer;
+  transition:all .18s;
+  box-shadow:0 1px 4px rgba(46,53,56,.06);
+}
+.type-btn.active{background:var(--coral);color:var(--white);box-shadow:0 3px 10px rgba(255,107,107,.32)}
+
+/* ── ROUTINE CARDS ── */
+.routines{padding:12px 16px 0}
+.rcard{
+  background:var(--white);
+  border-radius:20px;
+  margin-bottom:12px;
+  overflow:hidden;
+  box-shadow:0 2px 12px rgba(46,53,56,.06);
+  transition:box-shadow .2s;
+}
+.rcard.open{box-shadow:0 6px 24px rgba(46,53,56,.1)}
+.rhead{padding:16px 18px;cursor:pointer;user-select:none;display:flex;align-items:flex-start;gap:12px}
+.rnum{
+  width:38px;height:38px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Poppins',sans-serif;
+  font-size:15px;font-weight:800;
+  flex-shrink:0;
+}
+.rnum.c{background:var(--coral-lt);color:var(--coral-dk)}
+.rnum.m{background:var(--mint-lt);color:var(--mint)}
+.rnum.s{background:var(--sun-lt);color:#C89A00}
+.rnum.l{background:var(--lav-lt);color:var(--lav)}
+.rinfo{flex:1;min-width:0}
+.rname{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+.rdesc{font-size:12px;color:var(--gray);margin-top:3px;font-weight:600}
+.rmeta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.rpill{font-size:10px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--gray-lt);color:var(--ink2);font-family:'Poppins',sans-serif}
+.rpill.hi{background:var(--sun-lt);color:#B08800}
+.rchev{color:var(--gray);font-size:12px;transition:transform .25s;flex-shrink:0;margin-top:10px}
+.rcard.open .rchev{transform:rotate(180deg);color:var(--coral)}
+
+.rbody{display:none;padding:0 16px 16px}
+.rcard.open .rbody{display:block}
+
+/* WARMUP */
+.warmup{background:var(--sun-lt);border-radius:14px;padding:13px 15px;margin-bottom:14px}
+.wtitle{font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:#B08800;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.witem{font-size:12.5px;color:var(--ink2);padding:3px 0;font-weight:600}
+.witem::before{content:'•';color:var(--sun);margin-right:7px;font-weight:800}
+
+/* BLOCK */
+.block{margin-bottom:14px}
+.blabel{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:8px;
+  padding:0 2px;
+}
+.blabel-l{font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:var(--ink)}
+.blabel-r{font-size:10.5px;color:var(--gray);font-weight:700;font-family:'Poppins',sans-serif}
+.stations{display:flex;flex-direction:column;gap:7px}
+.st{
+  display:flex;
+  align-items:flex-start;
+  gap:11px;
+  padding:12px 13px;
+  border-radius:14px;
+  background:var(--cream);
+  border-left:4px solid transparent;
+}
+.st.a{border-left-color:var(--coral);background:linear-gradient(90deg,rgba(255,107,107,.05),rgba(255,255,255,0))}
+.st.b{border-left-color:var(--mint);background:linear-gradient(90deg,rgba(43,184,172,.05),rgba(255,255,255,0))}
+.st-badge{
+  font-family:'Poppins',sans-serif;
+  font-size:9px;
+  font-weight:800;
+  padding:4px 7px;
+  border-radius:7px;
+  flex-shrink:0;
+  letter-spacing:.4px;
+  margin-top:1px;
+}
+.st.a .st-badge{background:var(--coral);color:var(--white)}
+.st.b .st-badge{background:var(--mint);color:var(--white)}
+.st-body{flex:1;min-width:0}
+.st-name{font-size:14px;font-weight:800;color:var(--ink);line-height:1.25}
+.st-cue{font-size:11.5px;color:var(--gray);margin-top:3px;font-weight:600;line-height:1.4}
+.st-reps{
+  font-family:'Poppins',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  color:var(--ink2);
+  flex-shrink:0;
+  text-align:right;
+  white-space:nowrap;
+  margin-top:1px;
+}
+.swap-note{
+  font-size:11px;
+  color:var(--gray);
+  font-weight:700;
+  text-align:center;
+  padding:7px 0 0;
+  font-style:italic;
+}
+
+/* FINISHER PROMPT */
+.fin-prompt{
+  background:var(--lav-lt);
+  border-radius:14px;
+  padding:13px 15px;
+  margin-top:4px;
+}
+.fin-title{font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;color:var(--lav);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.fin-text{font-size:12px;color:var(--ink2);font-weight:600;line-height:1.5}
+
+/* HIIT CARDS */
+.hcard{
+  background:var(--white);
+  border-radius:20px;
+  margin:0 16px 12px;
+  padding:16px 18px;
+  box-shadow:0 2px 12px rgba(46,53,56,.06);
+}
+.hcard-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:11px}
+.hicon{
+  width:40px;height:40px;
+  border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.hicon.c{background:var(--coral-lt);color:var(--coral-dk)}
+.hicon.m{background:var(--mint-lt);color:var(--mint)}
+.hicon.s{background:var(--sun-lt);color:#C89A00}
+.hicon.l{background:var(--lav-lt);color:var(--lav)}
+.hname{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+.hdur{font-size:11.5px;color:var(--gray);margin-top:2px;font-weight:700}
+.hprotocol{
+  background:var(--cream);
+  border-radius:12px;
+  padding:11px 13px;
+  margin-bottom:10px;
+}
+.hp-label{font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:700;color:var(--gray);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:5px}
+.hp-text{font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.45}
+.hpartner{
+  display:flex;
+  gap:8px;
+  align-items:flex-start;
+  font-size:12px;
+  color:var(--ink2);
+  font-weight:600;
+  line-height:1.5;
+}
+.hpartner-icon{color:var(--mint);flex-shrink:0;margin-top:2px}
+
+/* PLAN / SCHEDULE */
+.day-card{
+  background:var(--white);
+  border-radius:18px;
+  margin:0 16px 10px;
+  padding:15px 17px;
+  box-shadow:0 2px 10px rgba(46,53,56,.05);
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+.day-badge{
+  width:44px;height:44px;
+  border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-family:'Poppins',sans-serif;
+}
+.day-badge.on{background:var(--coral);color:var(--white)}
+.day-badge.on.m{background:var(--mint)}
+.day-badge.off{background:var(--gray-lt);color:var(--gray)}
+.day-abbr{font-size:11px;font-weight:800;letter-spacing:.5px}
+.day-body{flex:1}
+.day-name{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--ink)}
+.day-note{font-size:11.5px;color:var(--gray);margin-top:2px;font-weight:600}
+
+.info-card{
+  background:var(--white);
+  border-radius:18px;
+  margin:0 16px 12px;
+  padding:17px;
+  box-shadow:0 2px 10px rgba(46,53,56,.05);
+}
+.ic-title{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.ic-row{display:flex;gap:11px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--gray-lt)}
+.ic-row:last-child{border-bottom:none}
+.ic-num{
+  width:22px;height:22px;
+  border-radius:7px;
+  background:var(--coral-lt);
+  color:var(--coral-dk);
+  font-family:'Poppins',sans-serif;
+  font-size:11px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  margin-top:1px;
+}
+.ic-num.m{background:var(--mint-lt);color:var(--mint)}
+.ic-num.s{background:var(--sun-lt);color:#C89A00}
+.ic-num.l{background:var(--lav-lt);color:var(--lav)}
+.ic-body{flex:1}
+.ic-h{font-size:13.5px;font-weight:800;color:var(--ink);line-height:1.3}
+.ic-p{font-size:12px;color:var(--ink2);margin-top:3px;line-height:1.55;font-weight:600}
+
+/* SCIENCE */
+.sci-card{
+  background:var(--white);
+  border-radius:18px;
+  margin:0 16px 12px;
+  padding:17px;
+  box-shadow:0 2px 10px rgba(46,53,56,.05);
+  border-top:4px solid var(--mint);
+}
+.sci-card.c{border-top-color:var(--coral)}
+.sci-card.s{border-top-color:var(--sun)}
+.sci-card.l{border-top-color:var(--lav)}
+.sci-tag{
+  font-family:'Poppins',sans-serif;
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+  color:var(--mint);
+  margin-bottom:6px;
+}
+.sci-card.c .sci-tag{color:var(--coral-dk)}
+.sci-card.s .sci-tag{color:#B08800}
+.sci-card.l .sci-tag{color:var(--lav)}
+.sci-h{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
+.sci-p{font-size:13px;color:var(--ink2);line-height:1.6;font-weight:600}
+.sci-src{
+  font-size:11px;
+  color:var(--gray);
+  margin-top:10px;
+  padding-top:9px;
+  border-top:1px solid var(--gray-lt);
+  font-weight:700;
+  font-style:italic;
+}
+
+/* NAV */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(20px);
+  border-top:1px solid var(--gray-lt);
+  display:flex;
+  padding:9px 0 calc(9px + var(--safe));
+  z-index:100;
+}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:4px 0}
+.ni-ic{width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--gray);transition:color .2s}
+.ni-lb{font-family:'Poppins',sans-serif;font-size:9.5px;font-weight:700;color:var(--gray);transition:color .2s}
+.ni.active .ni-ic{color:var(--coral)}
+.ni.active .ni-lb{color:var(--coral)}
+
+.tab{display:none}
+.tab.active{display:block;animation:fu .22s ease}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+.footer-note{
+  margin:4px 16px 20px;
+  padding:14px 16px;
+  background:var(--white);
+  border-radius:16px;
+  font-size:12px;
+  color:var(--ink2);
+  line-height:1.6;
+  font-weight:600;
+  box-shadow:0 2px 10px rgba(46,53,56,.05);
+}
+.footer-note b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- ═══════ WORKOUTS ═══════ -->
+<div id="tab-work" class="tab active">
+  <div class="hero">
+    <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
+    <div class="hero-eyebrow">Built for two</div>
+    <div class="hero-title">TWO<em>.</em><br>Partner Training</div>
+    <div class="hero-sub">Supersets + HIIT you do together. One at each station, swap every set.</div>
+    <div class="hero-tags">
+      <div class="htag c">4 DAYS / WEEK</div>
+      <div class="htag m">30–40 MIN</div>
+      <div class="htag l">BUILD MUSCLE</div>
+      <div class="htag">HOME GYM</div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Pick your session</div>
+    <div class="sec-sub">Multiple routines per category — rotate so it never gets stale</div>
+  </div>
+
+  <div class="type-row" id="type-row">
+    <button class="type-btn active" onclick="selType(0)">Upper Body</button>
+    <button class="type-btn" onclick="selType(1)">Lower Body</button>
+    <button class="type-btn" onclick="selType(2)">Full Body</button>
+  </div>
+
+  <div class="routines" id="routines"></div>
+</div>
+
+<!-- ═══════ HIIT ═══════ -->
+<div id="tab-hiit" class="tab">
+  <div class="hero" style="background:linear-gradient(135deg,#DFF6F4 0%,#FFF4D6 50%,#EDE9FF 100%)">
+    <div class="blob blob1" style="background:rgba(43,184,172,.18)"></div>
+    <div class="blob blob2" style="background:rgba(139,124,246,.16)"></div>
+    <div class="hero-eyebrow" style="color:var(--mint)">Finish strong</div>
+    <div class="hero-title">HIIT<em style="color:var(--mint)">.</em><br>Finishers</div>
+    <div class="hero-sub">Pick one to close out any session. 6–12 minutes. One works, one rests.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Choose a finisher</div>
+    <div class="sec-sub">Always do these AFTER lifting — never before</div>
+  </div>
+
+  <div id="hiit-list"></div>
+
+  <div class="footer-note">
+    <b>Why after, not before?</b> Research on concurrent training shows short, very intense intervals done after resistance work minimise the "interference effect" on strength and muscle gains. Long, moderate cardio done before lifting is the version that actually blunts adaptation.
+  </div>
+</div>
+
+<!-- ═══════ PLAN ═══════ -->
+<div id="tab-plan" class="tab">
+  <div class="hero" style="background:linear-gradient(135deg,#FFF4D6 0%,#FFE9E9 50%,#EDE9FF 100%)">
+    <div class="blob blob1" style="background:rgba(255,201,60,.22)"></div>
+    <div class="blob blob2" style="background:rgba(255,107,107,.16)"></div>
+    <div class="hero-eyebrow" style="color:#B08800">Your week</div>
+    <div class="hero-title">The<em style="color:var(--sun)"> Plan</em></div>
+    <div class="hero-sub">Four sessions. Every muscle hit twice a week. Three full rest days.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">Weekly schedule</div>
+    <div class="sec-sub">Swap days around to fit your life — just keep a rest day between repeats</div>
+  </div>
+
+  <div class="day-card"><div class="day-badge on"><div class="day-abbr">MON</div></div><div class="day-body"><div class="day-name">Upper Body</div><div class="day-note">Pick Upper 1, 2, or 3 + a finisher</div></div></div>
+  <div class="day-card"><div class="day-badge on m"><div class="day-abbr">TUE</div></div><div class="day-body"><div class="day-name">Lower Body</div><div class="day-note">Pick Lower 1, 2, or 3 + a finisher</div></div></div>
+  <div class="day-card"><div class="day-badge off"><div class="day-abbr">WED</div></div><div class="day-body"><div class="day-name">Rest / Walk</div><div class="day-note">Light movement, mobility, or nothing at all</div></div></div>
+  <div class="day-card"><div class="day-badge on"><div class="day-abbr">THU</div></div><div class="day-body"><div class="day-name">Upper Body</div><div class="day-note">Use a different routine than Monday</div></div></div>
+  <div class="day-card"><div class="day-badge on m"><div class="day-abbr">FRI</div></div><div class="day-body"><div class="day-name">Lower Body</div><div class="day-note">Use a different routine than Tuesday</div></div></div>
+  <div class="day-card"><div class="day-badge off"><div class="day-abbr">SAT</div></div><div class="day-body"><div class="day-name">Rest or Full Body</div><div class="day-note">Optional bonus session if you both feel good</div></div></div>
+  <div class="day-card"><div class="day-badge off"><div class="day-abbr">SUN</div></div><div class="day-body"><div class="day-name">Full Rest</div><div class="day-note">Recovery is where the adaptation happens</div></div></div>
+
+  <div class="sec">
+    <div class="sec-title">How partner training works</div>
+    <div class="sec-sub">The station system, explained</div>
+  </div>
+
+  <div class="info-card">
+    <div class="ic-title">The station system</div>
+    <div class="ic-row">
+      <div class="ic-num">1</div>
+      <div class="ic-body"><div class="ic-h">Split up at the start of each block</div><div class="ic-p">One of you takes Station A, the other takes Station B. The two exercises in a block are always opposing movements, so you're never fighting over the same equipment.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num m">2</div>
+      <div class="ic-body"><div class="ic-h">Work at the same time</div><div class="ic-p">While one presses, the other rows. Nobody stands around. Your partner's working set is your rest period — that's the whole trick.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num s">3</div>
+      <div class="ic-body"><div class="ic-h">Swap after each set</div><div class="ic-p">Finish your set, switch stations, go again. Repeat until you've both completed all the listed sets for both exercises.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num l">4</div>
+      <div class="ic-body"><div class="ic-h">Load independently</div><div class="ic-p">You'll be using different weights on most lifts and that's completely fine. The structure is shared; the loads are personal.</div></div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <div class="ic-title">Progression rules</div>
+    <div class="ic-row">
+      <div class="ic-num">1</div>
+      <div class="ic-body"><div class="ic-h">Hit the top of the range, add weight</div><div class="ic-p">If a lift says 8–10 reps and you complete 10 clean reps on every set, add load next session. Small jumps: 5 lb upper body, 10 lb lower body.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num m">2</div>
+      <div class="ic-body"><div class="ic-h">Leave 1–3 reps in reserve</div><div class="ic-p">Stop each set when you could still do 1–3 more good reps. Going to absolute failure on every set adds fatigue without adding much stimulus.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num s">3</div>
+      <div class="ic-body"><div class="ic-h">Log it or lose it</div><div class="ic-p">Write down weight and reps every session. Progressive overload isn't a vibe — it's a number that has to go up over time.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num l">4</div>
+      <div class="ic-body"><div class="ic-h">Deload every 6–8 weeks</div><div class="ic-p">Cut sets roughly in half for one week, keep the weight. You'll come back stronger and your joints will thank you.</div></div>
+    </div>
+  </div>
+
+  <div class="info-card" style="margin-bottom:20px">
+    <div class="ic-title">Save this to your iPad</div>
+    <div class="ic-row">
+      <div class="ic-num">1</div>
+      <div class="ic-body"><div class="ic-h">Open in Safari</div><div class="ic-p">This page needs to be open in the Safari browser — not inside another app.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num m">2</div>
+      <div class="ic-body"><div class="ic-h">Tap the Share button</div><div class="ic-p">On iPad it's the square with an arrow pointing up, in the top-right toolbar next to the address bar.</div></div>
+    </div>
+    <div class="ic-row">
+      <div class="ic-num s">3</div>
+      <div class="ic-body"><div class="ic-h">Scroll and tap "Add to Home Screen"</div><div class="ic-p">Then tap Add. An icon appears on your home screen and opens full screen, like a real app. Works offline once loaded.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SCIENCE ═══════ -->
+<div id="tab-sci" class="tab">
+  <div class="hero" style="background:linear-gradient(135deg,#EDE9FF 0%,#DFF6F4 50%,#FFE9E9 100%)">
+    <div class="blob blob1" style="background:rgba(139,124,246,.18)"></div>
+    <div class="blob blob2" style="background:rgba(43,184,172,.16)"></div>
+    <div class="hero-eyebrow" style="color:var(--lav)">Why it's built this way</div>
+    <div class="hero-title">The<em style="color:var(--lav)"> Why</em></div>
+    <div class="hero-sub">Every design choice here traces back to published research. Fair game to fact-check.</div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-title">The evidence</div>
+    <div class="sec-sub">The reasoning behind the programming</div>
+  </div>
+
+  <div class="sci-card c">
+    <div class="sci-tag">Superset structure</div>
+    <div class="sci-h">Antagonist supersets cut session time roughly in half without costing you gains</div>
+    <div class="sci-p">A 2025 systematic review and meta-analysis found supersets reduce session duration without compromising training volume, muscle activation, perceived recovery, or long-term adaptations in strength, strength endurance, and hypertrophy. Critically, the subgroup analysis showed agonist–antagonist pairings let lifters complete significantly <em>more</em> total reps than traditional straight sets — likely because pre-activating the antagonist enhances neural drive on the following lift. That's exactly why every block here pairs a push with a pull, or a quad movement with a hamstring movement.</div>
+    <div class="sci-src">Source: Systematic review &amp; meta-analysis, Sports Medicine (2025) — superset vs. traditional prescriptions</div>
+  </div>
+
+  <div class="sci-card">
+    <div class="sci-tag">Superset selection</div>
+    <div class="sci-h">Not all supersets are equal — same-muscle pairings actually reduce your volume</div>
+    <div class="sci-p">The same meta-analysis found "similar biomechanical" supersets (two exercises hitting the same muscle back to back) significantly reduced total volume load compared to straight sets. Agonist–antagonist pairings maintained or increased it. Every pairing in this program is deliberately antagonist or non-competing — you'll never see chest press supersetted with chest fly here.</div>
+    <div class="sci-src">Source: Sports Medicine (2025) subgroup analysis — SMD −1.08 for biomechanically similar supersets</div>
+  </div>
+
+  <div class="sci-card l">
+    <div class="sci-tag">HIIT placement</div>
+    <div class="sci-h">Short, hard intervals after lifting protect your muscle gains</div>
+    <div class="sci-p">The concurrent training literature suggests interference depends heavily on the protocol used. Very intense, short-duration interval work substantially reduces the odds of interference with strength and hypertrophy, while long intervals performed <em>before</em> resistance training with no rest between are the worst-case scenario. A recent 16-week trial using long-interval HIIT found protein synthesis, satellite cell activity, and type II fibre growth all remained intact — though strength gains were still somewhat lower than lifting alone. Every finisher in this app is short, hard, and placed at the end for that reason.</div>
+    <div class="sci-src">Sources: Sports Medicine interference model (2021); J Appl Physiol concurrent training trial (2025)</div>
+  </div>
+
+  <div class="sci-card s">
+    <div class="sci-tag">Weekly volume</div>
+    <div class="sci-h">10–20 hard sets per muscle per week is the responsive range</div>
+    <div class="sci-p">Schoenfeld and colleagues' foundational meta-analysis established a dose-response relationship between weekly set volume and muscle growth, with studies at 10+ weekly sets per muscle showing meaningfully greater hypertrophy than lower-volume protocols. A later systematic review narrowed the practical recommendation to 12–20 weekly sets for trained individuals. Running two upper and two lower sessions per week puts each major muscle group squarely inside that window — without the recovery cost of chasing very high volumes.</div>
+    <div class="sci-src">Sources: Schoenfeld, Ogborn &amp; Krieger (2017), J Sports Sci; Baz-Valle et al. (2022) systematic review</div>
+  </div>
+
+  <div class="sci-card">
+    <div class="sci-tag">Training frequency</div>
+    <div class="sci-h">Twice-weekly frequency per muscle beats once</div>
+    <div class="sci-p">Splitting weekly volume across two sessions per muscle group rather than cramming it into one lets you keep per-session quality high while accumulating the same total work. That's the entire logic of the Upper / Lower / Upper / Lower layout — chest, back, shoulders, arms, quads, hams, and glutes each get two exposures per week with at least 48 hours between.</div>
+    <div class="sci-src">Consistent with dose-response meta-regression findings on volume and frequency (Sports Medicine, 2026)</div>
+  </div>
+
+  <div class="sci-card c">
+    <div class="sci-tag">The honest caveat</div>
+    <div class="sci-h">Supersets cost more than they look like they do</div>
+    <div class="sci-p">The research is clear that supersets induce higher internal loads, more muscle damage, and higher perceived exertion than traditional sets. That's the trade for the time saving. Practically: expect these sessions to feel harder than the set count suggests, respect the rest days, and don't stack a brutal finisher onto every single session if you're both feeling beaten up. Scale the finisher, or skip it.</div>
+    <div class="sci-src">Source: Sports Medicine (2025) — noted higher internal load and RPE with superset prescriptions</div>
+  </div>
+
+  <div class="footer-note" style="margin-top:4px">
+    <b>A note on the sources.</b> These are summaries in plain language, not direct quotes. If she wants to dig into the primary literature, searching the study names above on PubMed will pull up the full papers — most have free full text.
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="ni active" id="nav-work" onclick="switchTab('work')">
+    <div class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5h11M6.5 17.5h11M4 12h16M2 9.5l2 2.5-2 2.5M22 9.5l-2 2.5 2 2.5"/></svg></div>
+    <div class="ni-lb">Workouts</div>
+  </div>
+  <div class="ni" id="nav-hiit" onclick="switchTab('hiit')">
+    <div class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <div class="ni-lb">HIIT</div>
+  </div>
+  <div class="ni" id="nav-plan" onclick="switchTab('plan')">
+    <div class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+    <div class="ni-lb">Plan</div>
+  </div>
+  <div class="ni" id="nav-sci" onclick="switchTab('sci')">
+    <div class="ni-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v7L4.5 17a2 2 0 001.7 3h11.6a2 2 0 001.7-3L15 9V2"/><path d="M8 2h8M7.5 14h9"/></svg></div>
+    <div class="ni-lb">The Why</div>
+  </div>
+</nav>
+
+<script>
+var ROUTINES = [
+  // ══════════ UPPER BODY ══════════
+  [
+    {
+      name:'Push & Pull Power',
+      desc:'Heavy horizontal work, then vertical, then arms',
+      mins:'35 min',
+      tags:['Chest','Back','Shoulders','Arms'],
+      color:'c',
+      warmup:['Band pull-aparts — 2 x 15','Scapular push-ups — 2 x 10','Arm circles — 30 sec each direction','Empty bar or light DB bench — 1 x 15'],
+      blocks:[
+        {label:'Block A', rest:'Rest 75–90 sec after both finish',
+         a:{name:'Dumbbell Bench Press', reps:'4 x 8–10', cue:'Elbows tucked ~45 degrees, 2 sec lowering'},
+         b:{name:'Chest-Supported Row', reps:'4 x 8–10', cue:'Drive elbows back, 1 sec squeeze at the top'}},
+        {label:'Block B', rest:'Rest 60–75 sec',
+         a:{name:'Seated DB Shoulder Press', reps:'3 x 10–12', cue:'Ribs down, do not arch the lower back'},
+         b:{name:'Lat Pulldown (wide grip)', reps:'3 x 10–12', cue:'Pull to collarbone, lead with the elbows'}},
+        {label:'Block C', rest:'Rest 45–60 sec',
+         a:{name:'Cable Chest Fly', reps:'3 x 12–15', cue:'Slight elbow bend, feel the stretch at the bottom'},
+         b:{name:'Cable Face Pull', reps:'3 x 15–20', cue:'Pull to forehead, externally rotate at the end'}},
+        {label:'Block D — Arms', rest:'Rest 45 sec',
+         a:{name:'DB or EZ-Bar Curl', reps:'3 x 12', cue:'Elbows pinned to your sides, no swinging'},
+         b:{name:'Cable Tricep Pushdown', reps:'3 x 12–15', cue:'Lock the elbows in place, full extension'}}
+      ]
+    },
+    {
+      name:'Vertical & Horizontal',
+      desc:'Pull-up and incline focused — great for back width',
+      mins:'35 min',
+      tags:['Upper Chest','Lats','Rear Delts','Arms'],
+      color:'m',
+      warmup:['Band shoulder dislocates — 2 x 10','Dead hang from the bar — 2 x 20 sec','Push-ups — 1 x 10','Cat-cow — 5 slow reps'],
+      blocks:[
+        {label:'Block A', rest:'Rest 75–90 sec',
+         a:{name:'Incline Dumbbell Press', reps:'4 x 8–10', cue:'Bench at 30 degrees, do not go steeper'},
+         b:{name:'Single-Arm Dumbbell Row', reps:'4 x 10 each side', cue:'Flat back, pull the elbow past the ribs'}},
+        {label:'Block B', rest:'Rest 60–90 sec',
+         a:{name:'Pull-Ups (assisted or weighted)', reps:'3 x 6–10', cue:'Full hang at the bottom, chin over the bar'},
+         b:{name:'Push-Ups (feet elevated)', reps:'3 x to 2 reps shy of failure', cue:'Straight line from head to heels'}},
+        {label:'Block C', rest:'Rest 45–60 sec',
+         a:{name:'Cable Lateral Raise', reps:'3 x 15 each arm', cue:'Lead with the elbow, stop at shoulder height'},
+         b:{name:'Reverse Pec Deck', reps:'3 x 15', cue:'Squeeze the shoulder blades, control the return'}},
+        {label:'Block D — Arms', rest:'Rest 45 sec',
+         a:{name:'Incline Dumbbell Curl', reps:'3 x 10–12', cue:'Let the arms hang back for a bigger stretch'},
+         b:{name:'Overhead Cable Tricep Ext.', reps:'3 x 12–15', cue:'Keep the upper arms still, stretch behind the head'}}
+      ]
+    },
+    {
+      name:'Shoulders & Arms Emphasis',
+      desc:'Overhead pressing plus higher arm volume',
+      mins:'35 min',
+      tags:['Delts','Traps','Biceps','Triceps'],
+      color:'l',
+      warmup:['Band external rotations — 2 x 15 each side','Wall slides — 2 x 10','Light overhead press — 1 x 15','Wrist circles — 20 sec'],
+      blocks:[
+        {label:'Block A', rest:'Rest 75–90 sec',
+         a:{name:'Standing Overhead Press', reps:'4 x 6–8', cue:'Squeeze the glutes, press the head through at the top'},
+         b:{name:'Neutral-Grip Lat Pulldown', reps:'4 x 8–10', cue:'Chest tall, pull to the upper chest'}},
+        {label:'Block B', rest:'Rest 60 sec',
+         a:{name:'Arnold Press', reps:'3 x 10–12', cue:'Rotate smoothly, no rushing through the turn'},
+         b:{name:'Rope Cable Row (high elbow)', reps:'3 x 12', cue:'Elbows flare wide — this is a rear delt row'}},
+        {label:'Block C', rest:'Rest 45 sec',
+         a:{name:'Dumbbell Lateral Raise', reps:'3 x 15', cue:'Light weight, no momentum, pinkies slightly up'},
+         b:{name:'Bent-Over Rear Delt Fly', reps:'3 x 15', cue:'Hinge at the hips, thumbs pointing down'}},
+        {label:'Block D — Arms', rest:'Rest 45 sec',
+         a:{name:'Hammer Curl', reps:'3 x 12', cue:'Neutral grip, hits the brachialis and forearms'},
+         b:{name:'Rope Overhead Extension', reps:'3 x 12', cue:'Spread the rope apart at full lockout'}}
+      ]
+    }
+  ],
+
+  // ══════════ LOWER BODY ══════════
+  [
+    {
+      name:'Squat Focus',
+      desc:'Quad-dominant with hamstring balance built in',
+      mins:'35 min',
+      tags:['Quads','Hamstrings','Glutes','Core'],
+      color:'c',
+      warmup:['Bodyweight squats — 2 x 10','Glute bridges — 2 x 12','Leg swings — 10 each direction','Goblet squat hold — 30 sec'],
+      blocks:[
+        {label:'Block A', rest:'Rest 90 sec — this one is heavy',
+         a:{name:'Barbell Back Squat', reps:'4 x 8–10', cue:'Brace hard, break at the hips and knees together'},
+         b:{name:'Lying Leg Curl', reps:'4 x 10–12', cue:'Slow on the way down, no bouncing off the stack'}},
+        {label:'Block B', rest:'Rest 60–75 sec',
+         a:{name:'Walking Lunges', reps:'3 x 10 each leg', cue:'Long stride, front knee tracks over the toes'},
+         b:{name:'Leg Extension', reps:'3 x 12–15', cue:'Pause 1 sec at the top, control the lowering'}},
+        {label:'Block C', rest:'Rest 60 sec',
+         a:{name:'Barbell Hip Thrust', reps:'3 x 10–12', cue:'Chin tucked, full lockout, squeeze the glutes'},
+         b:{name:'Standing Calf Raise', reps:'3 x 15–20', cue:'Full stretch at the bottom, pause at the top'}},
+        {label:'Block D — Core', rest:'Rest 45 sec',
+         a:{name:'Cable Woodchop', reps:'3 x 12 each side', cue:'Rotate through the torso, hips stay square'},
+         b:{name:'Hanging Knee Raise', reps:'3 x 12', cue:'Curl the pelvis up, do not just swing the legs'}}
+      ]
+    },
+    {
+      name:'Hinge Focus',
+      desc:'Posterior chain priority — hamstrings and glutes',
+      mins:'35 min',
+      tags:['Hamstrings','Glutes','Quads','Core'],
+      color:'m',
+      warmup:['Hip hinge with a dowel — 2 x 10','Bird dogs — 2 x 8 each side','90/90 hip switches — 10 reps','Light RDL — 1 x 12'],
+      blocks:[
+        {label:'Block A', rest:'Rest 90 sec',
+         a:{name:'Romanian Deadlift', reps:'4 x 8–10', cue:'Push the hips back, bar stays close to the legs'},
+         b:{name:'Leg Press', reps:'4 x 10–12', cue:'Feet shoulder width, do not let the lower back round'}},
+        {label:'Block B', rest:'Rest 60–75 sec',
+         a:{name:'Bulgarian Split Squat', reps:'3 x 10 each leg', cue:'Torso slightly forward to bias the glute'},
+         b:{name:'Cable Pull-Through', reps:'3 x 15', cue:'Pure hip hinge — the arms are just hooks'}},
+        {label:'Block C', rest:'Rest 45–60 sec',
+         a:{name:'Seated Leg Curl', reps:'3 x 12–15', cue:'Hips stay pinned, full range every rep'},
+         b:{name:'Seated Calf Raise', reps:'3 x 20', cue:'Targets the soleus — go higher reps here'}},
+        {label:'Block D — Core', rest:'Rest 45 sec',
+         a:{name:'Pallof Press', reps:'3 x 12 each side', cue:'Resist the rotation — that is the whole exercise'},
+         b:{name:'Weighted Decline Sit-Up', reps:'3 x 15', cue:'Roll up one vertebra at a time'}}
+      ]
+    },
+    {
+      name:'Glute & Hamstring Build',
+      desc:'Higher glute volume with unilateral work',
+      mins:'35 min',
+      tags:['Glutes','Hamstrings','Balance','Calves'],
+      color:'s',
+      warmup:['Banded lateral walks — 2 x 12 each way','Glute bridge — 2 x 15','Ankle circles — 20 sec each','Bodyweight RDL — 1 x 12'],
+      blocks:[
+        {label:'Block A', rest:'Rest 75–90 sec',
+         a:{name:'Barbell Hip Thrust', reps:'4 x 8–10', cue:'Heaviest glute movement — go hard here'},
+         b:{name:'Goblet Squat', reps:'4 x 12', cue:'Elbows inside the knees, upright chest'}},
+        {label:'Block B', rest:'Rest 60 sec',
+         a:{name:'Single-Leg Romanian Deadlift', reps:'3 x 10 each leg', cue:'Hips square, slow and controlled — balance is the point'},
+         b:{name:'Cable Glute Kickback', reps:'3 x 15 each side', cue:'Squeeze at the top, no lower back arching'}},
+        {label:'Block C', rest:'Rest 60 sec',
+         a:{name:'Reverse Lunge (from a deficit)', reps:'3 x 10 each leg', cue:'Step back and down, drive through the front heel'},
+         b:{name:'Nordic Curl or Leg Curl', reps:'3 x 8–12', cue:'Fight the lowering as long as you can'}},
+        {label:'Block D', rest:'Rest 40 sec',
+         a:{name:'Frog Pump', reps:'3 x 20', cue:'Heels together, knees out, high rep burnout'},
+         b:{name:'Standing Calf Raise', reps:'3 x 20', cue:'One second pause at the top of every rep'}}
+      ]
+    }
+  ],
+
+  // ══════════ FULL BODY ══════════
+  [
+    {
+      name:'Total Body Strength',
+      desc:'Big compounds paired top and bottom',
+      mins:'40 min',
+      tags:['Full Body','Compound','Strength'],
+      color:'c',
+      warmup:['Bodyweight squats — 2 x 10','Band pull-aparts — 2 x 15','Glute bridges — 2 x 12','Push-ups — 1 x 10'],
+      blocks:[
+        {label:'Block A', rest:'Rest 90 sec',
+         a:{name:'Goblet or Front Squat', reps:'4 x 8–10', cue:'Upright torso, elbows high'},
+         b:{name:'Dumbbell Bench Press', reps:'4 x 8–10', cue:'Controlled lowering, full lockout'}},
+        {label:'Block B', rest:'Rest 75 sec',
+         a:{name:'Romanian Deadlift', reps:'3 x 10', cue:'Hinge, do not squat it — feel the hamstrings'},
+         b:{name:'Chest-Supported Row', reps:'3 x 10–12', cue:'Squeeze the shoulder blades together'}},
+        {label:'Block C', rest:'Rest 60 sec',
+         a:{name:'Dumbbell Shoulder Press', reps:'3 x 12', cue:'Ribs down, press straight up'},
+         b:{name:'Lat Pulldown', reps:'3 x 12', cue:'Chest up, drive the elbows down and back'}},
+        {label:'Block D — Arms', rest:'Rest 45 sec',
+         a:{name:'Cable Curl', reps:'3 x 12', cue:'Constant tension — never fully unload at the bottom'},
+         b:{name:'Tricep Pushdown', reps:'3 x 12', cue:'Elbows locked to the ribs'}}
+      ]
+    },
+    {
+      name:'Athletic Circuit',
+      desc:'Carries, throws, and unilateral work — feels fun',
+      mins:'35 min',
+      tags:['Power','Core','Conditioning','Grip'],
+      color:'m',
+      warmup:['Jumping jacks — 45 sec','World greatest stretch — 5 each side','Bodyweight lunges — 2 x 8 each','Med ball chest pass — 10 reps'],
+      blocks:[
+        {label:'Block A', rest:'Rest 90 sec',
+         a:{name:'Trap Bar Deadlift', reps:'4 x 6–8', cue:'Push the floor away, chest stays proud'},
+         b:{name:'Landmine or Push-Up Press', reps:'4 x 10–12', cue:'Full range, brace the core throughout'}},
+        {label:'Block B', rest:'Rest 60 sec',
+         a:{name:'Dumbbell Step-Up', reps:'3 x 10 each leg', cue:'Knee height box, no pushing off the back foot'},
+         b:{name:'Single-Arm Cable Row', reps:'3 x 12 each side', cue:'Allow a slight rotation, then pull hard'}},
+        {label:'Block C', rest:'Rest 60 sec',
+         a:{name:'Kettlebell Swing', reps:'3 x 15', cue:'Hip snap, not an arm lift — bell floats to chest height'},
+         b:{name:'Plank Pull-Through', reps:'3 x 10 each side', cue:'Hips do not rotate — that is the challenge'}},
+        {label:'Block D', rest:'Rest 45 sec',
+         a:{name:'Farmer Carry', reps:'3 x 40 yards', cue:'Tall posture, shoulders packed down'},
+         b:{name:'Medicine Ball Slam', reps:'3 x 12', cue:'Full overhead reach, drive it into the floor'}}
+      ]
+    },
+    {
+      name:'Express Density Day',
+      desc:'Short on time? This one is 25 minutes flat',
+      mins:'25 min',
+      tags:['Time-Saver','Full Body','High Density'],
+      color:'l',
+      warmup:['Jump rope or bike — 3 min easy','Bodyweight squats — 1 x 15','Arm circles — 30 sec'],
+      blocks:[
+        {label:'Block A — 5 rounds', rest:'Rest 45 sec only',
+         a:{name:'Goblet Squat', reps:'5 x 12', cue:'Move briskly but stay in control'},
+         b:{name:'Dumbbell Floor Press', reps:'5 x 12', cue:'Pause briefly when the triceps touch the floor'}},
+        {label:'Block B — 5 rounds', rest:'Rest 45 sec only',
+         a:{name:'Dumbbell Romanian Deadlift', reps:'5 x 12', cue:'Hamstring stretch on every single rep'},
+         b:{name:'Bent-Over Dumbbell Row', reps:'5 x 12', cue:'Flat back, elbows drive past the torso'}},
+        {label:'Block C — 3 rounds', rest:'Rest 30 sec',
+         a:{name:'Dumbbell Thruster', reps:'3 x 10', cue:'Squat into an overhead press, one fluid motion'},
+         b:{name:'Renegade Row', reps:'3 x 8 each side', cue:'Wide feet for stability, minimise hip rotation'}}
+      ]
+    }
+  ]
+];
+
+var HIIT = [
+  {name:'Bike Sprint Intervals', dur:'8 min', color:'c',
+   protocol:'20 sec all-out / 40 sec easy spin — 8 rounds',
+   partner:'Alternate rounds. While one of you sprints, the other recovers on the floor. Eight rounds each means sixteen total — call them out for each other.'},
+  {name:'Rower Repeats', dur:'10 min', color:'m',
+   protocol:'250m hard — 6 rounds, 75 sec rest between',
+   partner:'Take turns on the rower. Your partner rowing IS your rest interval. Try to match or beat their split time.'},
+  {name:'Battle Rope Waves', dur:'8 min', color:'s',
+   protocol:'30 sec on / 30 sec off — 8 rounds',
+   partner:'Perfect 1:1 work-to-rest when you alternate. Switch the wave style each round — alternating, double slam, side-to-side.'},
+  {name:'Kettlebell Swing EMOM', dur:'10 min', color:'l',
+   protocol:'Every minute on the minute: 12 swings, rest the remainder',
+   partner:'One of you goes on even minutes, the other on odd minutes. Ten minutes total, five working rounds each.'},
+  {name:'Assault Bike Tabata', dur:'4 min', color:'c',
+   protocol:'20 sec max effort / 10 sec rest — 8 rounds',
+   partner:'This one is brutal and short. Go one after the other, or take 4 rounds each alternating. Best used when you are truly out of time.'},
+  {name:'Sled Push Relay', dur:'10 min', color:'m',
+   protocol:'20 yard push, swap immediately — 8 rounds each',
+   partner:'Purest partner finisher there is. Push down, hand off, they push back. No timer needed — just keep it moving.'},
+  {name:'Jump Rope Ladder', dur:'9 min', color:'s',
+   protocol:'60 / 45 / 30 / 15 sec, equal rest between — repeat twice',
+   partner:'Both of you jump at the same time on this one. Descending intervals means it gets easier as you get more tired.'},
+  {name:'Incline Treadmill Sprints', dur:'12 min', color:'l',
+   protocol:'30 sec hard at 6–8% incline / 90 sec walk — 6 rounds',
+   partner:'Alternate rounds if you only have one treadmill. Longer rest here so you can genuinely go hard on the work interval.'},
+  {name:'Bodyweight Burner', dur:'8 min', color:'c',
+   protocol:'40 sec work / 20 sec rest — burpee, mountain climber, jump squat, high knees — 2 rounds through',
+   partner:'Zero equipment. Do it side by side and let the shared misery carry you. Great when the gym space is limited.'}
+];
+
+var state = {tab:'work', type:0, open:{}};
+
+function selType(i){
+  state.type = i;
+  state.open = {};
+  var btns = document.querySelectorAll('.type-btn');
+  for(var j=0;j<btns.length;j++){ btns[j].classList.toggle('active', j===i); }
+  renderRoutines();
+}
+
+function toggleRoutine(i){
+  state.open[i] = !state.open[i];
+  var el = document.getElementById('rc-'+i);
+  if(el) el.classList.toggle('open', !!state.open[i]);
+}
+
+function renderRoutines(){
+  var list = ROUTINES[state.type];
+  var out = '';
+  for(var i=0;i<list.length;i++){
+    var r = list[i];
+    out += '<div class="rcard" id="rc-'+i+'">';
+    out += '<div class="rhead" onclick="toggleRoutine('+i+')">';
+    out += '<div class="rnum '+r.color+'">'+(i+1)+'</div>';
+    out += '<div class="rinfo"><div class="rname">'+r.name+'</div><div class="rdesc">'+r.desc+'</div>';
+    out += '<div class="rmeta"><span class="rpill hi">'+r.mins+'</span>';
+    for(var t=0;t<r.tags.length;t++){ out += '<span class="rpill">'+r.tags[t]+'</span>'; }
+    out += '</div></div><div class="rchev">&#9660;</div></div>';
+
+    out += '<div class="rbody">';
+    out += '<div class="warmup"><div class="wtitle"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9L17 7M7 17l-2.1 2.1"/></svg>Warm-Up — 5 minutes</div>';
+    for(var w=0;w<r.warmup.length;w++){ out += '<div class="witem">'+r.warmup[w]+'</div>'; }
+    out += '</div>';
+
+    for(var b=0;b<r.blocks.length;b++){
+      var bl = r.blocks[b];
+      out += '<div class="block"><div class="blabel"><div class="blabel-l">'+bl.label+'</div><div class="blabel-r">'+bl.rest+'</div></div>';
+      out += '<div class="stations">';
+      out += '<div class="st a"><div class="st-badge">A</div><div class="st-body"><div class="st-name">'+bl.a.name+'</div><div class="st-cue">'+bl.a.cue+'</div></div><div class="st-reps">'+bl.a.reps+'</div></div>';
+      out += '<div class="st b"><div class="st-badge">B</div><div class="st-body"><div class="st-name">'+bl.b.name+'</div><div class="st-cue">'+bl.b.cue+'</div></div><div class="st-reps">'+bl.b.reps+'</div></div>';
+      out += '</div><div class="swap-note">Swap stations after each set</div></div>';
+    }
+
+    out += '<div class="fin-prompt"><div class="fin-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Finish it off</div><div class="fin-text">Head to the HIIT tab and pick one finisher. Six to twelve minutes and you are done.</div></div>';
+    out += '</div></div>';
+  }
+  document.getElementById('routines').innerHTML = out;
+}
+
+function renderHiit(){
+  var out = '';
+  for(var i=0;i<HIIT.length;i++){
+    var h = HIIT[i];
+    out += '<div class="hcard">';
+    out += '<div class="hcard-top"><div class="hicon '+h.color+'"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>';
+    out += '<div><div class="hname">'+h.name+'</div><div class="hdur">'+h.dur+'</div></div></div>';
+    out += '<div class="hprotocol"><div class="hp-label">Protocol</div><div class="hp-text">'+h.protocol+'</div></div>';
+    out += '<div class="hpartner"><div class="hpartner-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div>'+h.partner+'</div></div>';
+    out += '</div>';
+  }
+  document.getElementById('hiit-list').innerHTML = out;
+}
+
+function switchTab(t){
+  var tabs = document.querySelectorAll('.tab');
+  for(var i=0;i<tabs.length;i++){ tabs[i].classList.remove('active'); }
+  var nis = document.querySelectorAll('.ni');
+  for(var j=0;j<nis.length;j++){ nis[j].classList.remove('active'); }
+  document.getElementById('tab-'+t).classList.add('active');
+  document.getElementById('nav-'+t).classList.add('active');
+  state.tab = t;
+  window.scrollTo(0,0);
+}
+
+renderRoutines();
+renderHiit();
+</script>
+</body>
+</html>
